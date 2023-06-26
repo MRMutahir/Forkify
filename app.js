@@ -1,52 +1,32 @@
-let api1 = fetch('https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza').then(response => {
-    return response.json()
-}).then(data => {
-    // console.log(data);
-    
-    console.log(data);
-});
+let btn_search = document.querySelector('.btn');
+let recipesection = document.querySelector('.recipe-section');
+let detailsmenu = document.querySelector('detailsmenu');
+console.log(btn_search);
 
 
-let searchmenu = document.querySelector('.searchmenu');
-let completemenu = document.querySelector('.completemenu');
-var inputElem = document.getElementById('inputElem');
-let btn_search = document.getElementById('btn_search');
-btn_search.addEventListener('click', () => {
-    let searchval = inputElem;
-    console.log(searchval.value.toLowerCase());
-    searchval.value = ''
-});
+fetch('https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza')
+    .then(response => {
+        return response.json()
+    }).then(getdata => {
+        console.log(getdata);
+        btn_search.addEventListener("click", search)
 
+        function search() {
+            let form_control = document.querySelector('.form-control').value;
+            // console.log(getdata.data.recipes);
+            let recipesObj = getdata.data.recipes
+                // console.log(recipesObj);
+            let filtrData = recipesObj.filter((ele) => {
+                // console.log(ele.title)
+                return ele.title == 'Pizza'
 
-
-
-
-
-
-
+            })
+            console.log(filtrData)
 
 
 
 
 
 
-// function search() {
-    //     const query = inputElem.value.toLowerCase();
-    //     const results = recipes.filter(function (recipe) {
-        //         return (recipe.title.toLowerCase().includes(query) ||
-        //             recipe.ingredients.join(" ").toLowerCase().includes(query))
-        //     });
-        // }
-        
-        
-        
-        // let api2 = fetch('https://forkify-api.herokuapp.com/api/v2/recipes/:id').then(response => {
-        //     return response.json()
-        // }).then(data => {
-        //     console.log(data)
-        // });
-        // let api3 = fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886').then(response => {
-        //     return response.json()
-        // }).then(data => {
-        //     console.log(data)
-        // });
+        }
+    })
