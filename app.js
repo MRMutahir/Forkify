@@ -1,6 +1,5 @@
 let btn_search = document.querySelector('.btn');
 let recipesection = document.querySelector('.recipe-section');
-let detailsmenu = document.querySelector('detailsmenu');
 // console.log(btn_search);
 
 function aPI(search) {
@@ -24,14 +23,14 @@ function filterData(apidata) {
             recipesection.appendChild(li);
             let uiset =
                 `
-                <div style="display: flex; align-items: center;" onclick="aPI2('${recipe.id}')">
+        <div style="display: flex; align-items: center;" onclick="aPI2('${recipe.id}')">
         <img src="${recipe.image_url}" alt="" style="border-radius: 50%; width: 100px; height: 100px;">
         <div style="margin-left: 10px; margin: 10px;">
-          <div>${recipe.title}</div>
+        <div>${recipe.title}</div>
           <div>${recipe.publisher}</div>
-        </div>
-      </div>
-               `
+          </div>
+          </div>
+          `
             li.innerHTML = uiset
 
         })
@@ -67,10 +66,20 @@ function detailSingleItem(singleitem) {
     // console.log('hi');
     console.log(singleitem);
     let single = singleitem.data.recipe;
-    console.log(single)
-    let singledata = single.map(ele => {
-        console.log(ele);
-        // let singleItemUi = `<div>${ele.title}</div>`;
-        // console.log(singleItemUi);
-    })
+    console.log(single);
+
+    let singleProdect = `
+    <div>
+} img src="${single.image_url}" alt="" </div>
+<div>${single.description
+}</div>
+<div>${single.cooking_time}</div>
+<div></div> `
+
+    let detailsmenu = document.querySelector('.detailsmenu');
+    let div2 = document.createElement('div');
+    detailsmenu.appendChild(div2);
+    detailsmenu = singleProdect
+        // console.log(div2)
+    console.log(detailsmenu)
 }
