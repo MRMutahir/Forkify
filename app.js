@@ -7,7 +7,7 @@ function aPI(search) {
         .then(response => {
             return response.json()
         }).then(getdata => {
-            console.log(getdata, '===>> ye data API ka heen');
+            // console.log(getdata, '===>> ye data API ka heen');
             filterData(getdata);
         });
     // console.log(search, '===> search ji input s mili hen ');
@@ -64,22 +64,15 @@ function aPI2(id) {
 
 function detailSingleItem(singleitem) {
     // console.log('hi');
-    console.log(singleitem);
+    // console.log(singleitem);
     let single = singleitem.data.recipe;
     console.log(single);
-
-    let singleProdect = `
-    <div>
-} img src="${single.image_url}" alt="" </div>
-<div>${single.description
-}</div>
-<div>${single.cooking_time}</div>
-<div></div> `
-
+    console.log(single.image_url, '==>> img');
     let detailsmenu = document.querySelector('.detailsmenu');
-    let div2 = document.createElement('div');
-    detailsmenu.appendChild(div2);
-    detailsmenu = singleProdect
-        // console.log(div2)
-    console.log(detailsmenu)
+    let li2 = document.createElement('li');
+    detailsmenu.appendChild(li2);
+    let singleProdect = ` <img src="${single.image_url}" alt="Description of the image" style="border-radius: 10px; width: 600px; height: 400px;">`
+    li2.innerHTML = singleProdect;
+    // console.log(div2);
+    // console.log(detailsmenu)
 }
