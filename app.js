@@ -7,7 +7,7 @@ function aPI(search) {
         .then(response => {
             return response.json()
         }).then(getdata => {
-            // console.log(getdata, '===>> ye data API ka heen');
+            console.log(getdata, '===>> ye data API ka heen');
             filterData(getdata);
         });
     // console.log(search, '===> search ji input s mili hen ');
@@ -16,26 +16,25 @@ function aPI(search) {
 function filterData(apidata) {
     // console.log(apidata, '==>> ye api k function s aya hen');
     let recipeData = apidata.data.recipes;
-    // console.log(recipeData, '==> ye obj s nikala tha');
+    console.log(recipeData, '==> ye obj s nikala tha');
     recipeData.map(recipe => {
-            // console.log(recipe);
-            let li = document.createElement('li');
-            recipesection.appendChild(li);
-            let uiset =
-                `
+        console.log(recipe, '==> map s aya hwa data');
+        let uiset =
+            `
         <div style="display: flex; align-items: center;" onclick="aPI2('${recipe.id}')">
         <img src="${recipe.image_url}" alt="" style="border-radius: 50%; width: 100px; height: 100px;">
         <div style="margin-left: 10px; margin: 10px;">
         <div>${recipe.title}</div>
-          <div>${recipe.publisher}</div>
-          </div>
-          </div>
-          `
-            li.innerHTML = uiset
+        <div>${recipe.publisher}</div>
+        </div>
+        </div>
+        `
+            // let div = document.createElement('div');
+        recipesection.innerHTML = uiset
+            // recipesection.appendChild(div);
 
-        })
-        // console.log(filtered, '==> ye map  ho kr aya hen')
-
+        console.log(uiset, '==> ye map  ho kr aya hen');
+    })
 }
 btn_search.addEventListener('click', search)
 
@@ -50,29 +49,48 @@ function search() {
 
 // after clicking on any single food item - 2;
 
-function aPI2(id) {
-    fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`).then(response2 => {
-        // if (!response2 == "ok") {
-        //     alert('api sahi nh hen')
-        // }
-        return response2.json();
-    }).then(singleData => {
-        console.log(singleData);
-        detailSingleItem(singleData)
-    })
-};
+// function aPI2(id) {
+//     fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`).then(response2 => {
+//         // if (!response2 == "ok") {
+//         //     alert('api sahi nh hen')
+//         // }
+//         return response2.json();
+//     }).then(singleData => {
+//         // console.log(singleData);
+//         detailSingleItem(singleData);
+//         // console.log(ingredients(single.ingredients))
+//     })
+// };
 
-function detailSingleItem(singleitem) {
-    // console.log('hi');
-    // console.log(singleitem);
-    let single = singleitem.data.recipe;
-    console.log(single);
-    console.log(single.image_url, '==>> img');
-    let detailsmenu = document.querySelector('.detailsmenu');
-    let li2 = document.createElement('li');
-    detailsmenu.appendChild(li2);
-    let singleProdect = ` <img src="${single.image_url}" alt="Description of the image" style="border-radius: 10px; width: 600px; height: 400px;">`
-    li2.innerHTML = singleProdect;
-    // console.log(div2);
-    // console.log(detailsmenu)
-}
+// function detailSingleItem(singleitem) {
+//     // console.log('hi');
+//     // console.log(singleitem);\
+
+//     let single = singleitem.data.recipe;
+//     // console.log(single);
+//     // console.log(single.image_url, '==>> img');
+//     let ingrediented = single.ingredients.map((ele) => {
+//         // console.log(ele, '==>>> ingredients');
+//         let ingredientedObg = `<li>${ele.quantity}</li>  <li>${ele.unit}</li> <li>${ele.description}</li>`
+//             // console.log(ingredientedObg);
+//         return ingredientedObg
+
+//     });
+//     ingrediented.join(', ');
+//     // console.log(ingrediented.join(', '));
+//     let detailsmenu = document.querySelector('.detailsmenu');
+//     let div2 = document.createElement('div');
+//     detailsmenu.appendChild(div2);
+//     let singleProdect = `
+//         <img src=${single.image_url}
+//         <h1>${single.title}<h1>
+//         <p></i>${single.cooking_time} minutes</p>
+//         <p></i>${single.servings} servings</p> <h4 class="card-title text-center my-4 recipeIng">Recipe Ingredients</h4>
+//         <div id="ingredientsList" class="d-flex flex-column flex-wrap">${ingrediented}</div>
+//         <a href=${single.source_url}>${single.source_url}</a>.
+// `
+//     div2.innerHTML = singleProdect;
+
+//     // console.log(div2);
+//     console.log(singleProdect);
+// }
