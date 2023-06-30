@@ -50,3 +50,19 @@
 #heading {
     color: #f12711;
 }
+
+.recipe-section {
+    height: 100vh;
+    /* Enable scrolling */
+    overflow: scroll;
+}
+
+.ingredientCard {
+    overflow: scroll;
+    height: 400px;
+}
+
+
+/* i {
+    color: #f12711;
+} */
