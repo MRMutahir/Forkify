@@ -1,5 +1,4 @@
 let btn_search = document.querySelector('.btn');
-let recipesection = document.querySelector('.recipe-section');
 // console.log(btn_search);
 
 function aPI(search) {
@@ -7,7 +6,7 @@ function aPI(search) {
         .then(response => {
             return response.json()
         }).then(getdata => {
-            console.log(getdata, '===>> ye data API ka heen');
+            // console.log(getdata, '===>> ye data API ka heen');
             filterData(getdata);
         });
     // console.log(search, '===> search ji input s mili hen ');
@@ -17,24 +16,44 @@ function filterData(apidata) {
     // console.log(apidata, '==>> ye api k function s aya hen');
     let recipeData = apidata.data.recipes;
     console.log(recipeData, '==> ye obj s nikala tha');
-    recipeData.map(recipe => {
-        console.log(recipe, '==> map s aya hwa data');
+    recipeData.forEach(ele => {
+        console.log(ele, ' ==>>forEach');
+        let recipesection = document.querySelector('.recipe-section');
+
         let uiset =
             `
-        <div style="display: flex; align-items: center;" onclick="aPI2('${recipe.id}')">
-        <img src="${recipe.image_url}" alt="" style="border-radius: 50%; width: 100px; height: 100px;">
-        <div style="margin-left: 10px; margin: 10px;">
-        <div>${recipe.title}</div>
-        <div>${recipe.publisher}</div>
-        </div>
-        </div>
-        `
-            // let div = document.createElement('div');
-        recipesection.innerHTML = uiset
-            // recipesection.appendChild(div);
+                <div style="display: flex; align-items: center;" onclick="aPI2('${ele.id}')">
+                <img src="${ele.image_url}" alt="" style="border-radius: 50%; width: 100px; height: 100px;">
+                <div style="margin-left: 10px; margin: 10px;">
+                <div>${ele.title}</div>
+                <div>${ele.publisher}</div>
+                </div>
+                </div>
+                `
+        let li = document.createElement('li');
+        recipesection.appendChild(li);
+        li.innerHTML = uiset
+            // recipesection.innerHTML = uiset
+        console.log(uiset, ' ==>>forEach UI');
 
-        console.log(uiset, '==> ye map  ho kr aya hen');
-    })
+    });
+
+    // recipeData.map(recipe => {
+    //     console.log(recipe, '==> map s aya hwa data');
+    //     let uiset =
+    //         `
+    //     <div style="display: flex; align-items: center;" onclick="aPI2('${recipe.id}')">
+    //     <img src="${recipe.image_url}" alt="" style="border-radius: 50%; width: 100px; height: 100px;">
+    //     <div style="margin-left: 10px; margin: 10px;">
+    //     <div>${recipe.title}</div>
+    //     <div>${recipe.publisher}</div>
+    //     </div>
+    //     </div>
+    //     `
+    //    
+
+    //     console.log(uiset, '==> ye map  ho kr aya hen');
+    // })
 }
 btn_search.addEventListener('click', search)
 
