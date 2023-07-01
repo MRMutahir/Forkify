@@ -8,40 +8,16 @@ function aPI(search) {
         }).then(getdata => {
             // console.log(getdata, '===>> ye data API ka heen');
             filterData(getdata);
-        });
-    // console.log(search, '===> search ji input s mili hen ');
+        })
+        // console.log(search, '===> search ji input s mili hen ');
 }
 
 function filterData(apidata) {
     // console.log(apidata, '==>> ye api k function s aya hen');
     let recipeData = apidata.data.recipes;
-    // console.log(recipeData, '==> ye obj s nikala tha');
-    // recipeData.forEach(ele => {
-    //     console.log(ele, ' ==>>forEach');
-    //     let recipesection = document.querySelector('.recipe-section');
-
-    //     let uiset =
-    //         `
-    //             <div style="display: flex; align-items: center;" onclick="aPI2('${ele.id}')">
-    //             <img src="${ele.image_url}" alt="" style="border-radius: 50%; width: 100px; height: 100px;">
-    //             <div style="margin-left: 10px; margin: 10px;">
-    //             <div>${ele.title}</div>
-    //             <div>${ele.publisher}</div>
-    //             </div>
-    //             </div>
-    //             `
-    //     let li = document.createElement('li');
-    //     recipesection.appendChild(li);
-    //     li.innerHTML = uiset
-    //         // recipesection.innerHTML = uiset
-    //     console.log(uiset, ' ==>>forEach UI');
-
-    // });
-
     let recipesection = document.querySelector('.recipe-section');
     let a = recipeData.map(recipe => {
             // console.log(recipe, '==> map s aya hwa data');
-
             let uiset =
                 `
         <div style="display: flex; align-items: center;" onclick="aPI2('${recipe.id}')">
@@ -53,11 +29,13 @@ function filterData(apidata) {
         </div>
         `
             return uiset
-
-            console.log(uiset, '==> ye map  ho kr aya hen');
+                // console.log(uiset, '==> ye map  ho kr aya hen');
         })
         // console.log(a, '==> ye map  ho kr aya hen');
-    recipesection.innerHTML = a
+    let aJoinn = a.join(' ')
+    console.log(a, '==> ye map join  ho kr aya hen');
+
+    recipesection.innerHTML = aJoinn
 
 }
 btn_search.addEventListener('click', search)
@@ -81,16 +59,7 @@ function aPI2(id) {
         return response2.json();
     }).then(singleData => {
         console.log(singleData);
-        // let single = singleData.data.recipe;
-        // console.log(single);
-
-        // let c = single.map((elem) => {
-        //         console.log(elem)
-        //     })
         detailSingleItem(singleData);
-        // console.log(ingredients(single.ingredients))
-        // console.log(detailSingleItem);
-
     })
 };
 
@@ -150,8 +119,5 @@ function detailSingleItem(singleitem) {
 </div>`
 
     let detailsmenu = document.querySelector('.detailsmenu');
-    // let div2 = document.createElement('div');
-    // detailsmenu.appendChild(div2);
     detailsmenu.innerHTML = singleProdect;
-    // console.log(singleProdect);
 };
